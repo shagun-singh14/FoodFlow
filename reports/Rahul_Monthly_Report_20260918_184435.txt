@@ -1,0 +1,26 @@
+======================================================================
+ STUDENT MONTHLY MEAL & BILLING REPORT - SEPTEMBER 2026
+ FoodFlow Mess Management System - VIT University
+ Generated: 2026-09-18T18:44:35.520932500 | By: Admin Officer
+======================================================================
+
+STUDENT DETAILS:
+Name       : Rahul Sharma
+Reg Number : 23BCE1001
+Course/Year: B.Tech CSE (Year 3)
+Hostel/Room: Block A - Mens Hostel (A-304)
+
+MEAL CONSUMPTION BREAKDOWN (September 2026):
+------------------------------------------------------------
+Breakfast  :  2 meals @ ₹35.00 = ₹70.00
+Lunch      :  2 meals @ ₹50.00 = ₹100.00
+Snacks     :  1 meals @ ₹25.00 = ₹25.00
+Dinner     :  2 meals @ ₹45.00 = ₹90.00
+------------------------------------------------------------
+Total Meals:  7 meals
+Total Bill : ₹1440.00
+Status     : Pending
+
+----------------------------------------------------------------------
+ SUMMARY: Student: 23BCE1001 | Month: September 2026 | Meals: 7 | Amount: ₹1440.00 | Status: Pending
+======================================================================

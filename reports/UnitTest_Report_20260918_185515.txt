@@ -1,0 +1,26 @@
+======================================================================
+ STUDENT MONTHLY MEAL & BILLING REPORT - SEPTEMBER 2026
+ FoodFlow Mess Management System - VIT University
+ Generated: 2026-09-18T18:55:15.914176100 | By: Test Runner
+======================================================================
+
+STUDENT DETAILS:
+Name       : Test Student
+Reg Number : 24BCE9999
+Course/Year: B.Tech CSE (Year 2)
+Hostel/Room: Block A (A-101)
+
+MEAL CONSUMPTION BREAKDOWN (September 2026):
+------------------------------------------------------------
+Breakfast  :  0 meals @ ₹35.00 = ₹0.00
+Lunch      :  0 meals @ ₹50.00 = ₹0.00
+Snacks     :  0 meals @ ₹25.00 = ₹0.00
+Dinner     :  0 meals @ ₹45.00 = ₹0.00
+------------------------------------------------------------
+Total Meals:  0 meals
+Total Bill : ₹1200.00
+Status     : Pending
+
+----------------------------------------------------------------------
+ SUMMARY: Student: 24BCE9999 | Month: September 2026 | Meals: 0 | Amount: ₹1200.00 | Status: Pending
+======================================================================

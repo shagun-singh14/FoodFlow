@@ -1,0 +1,335 @@
+/* ==========================================================================
+   FoodFlow - Modern Glassmorphic Dark / Vibrant JavaFX Theme
+   Designed for high aesthetic appeal, smooth curves, and clean typography.
+   ========================================================================== */
+
+/* Global Root Variables */
+.root {
+    -fx-font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', 'Helvetica Neue', sans-serif;
+    -fx-font-size: 13px;
+    -fx-base: #0f172a;
+    -fx-background: #090d16;
+    -fx-text-fill: #f8fafc;
+    -fx-focus-color: #6366f1;
+    -fx-faint-focus-color: rgba(99, 102, 241, 0.2);
+}
+
+/* Background Gradients & Containers */
+.main-window {
+    -fx-background-color: linear-gradient(to bottom right, #090d16, #0f172a, #131d36);
+}
+
+.sidebar {
+    -fx-background-color: rgba(15, 23, 42, 0.85);
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-width: 0 1px 0 0;
+    -fx-padding: 20 12 20 12;
+}
+
+.content-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 24;
+}
+
+/* Glassmorphic Cards */
+.glass-card {
+    -fx-background-color: rgba(30, 41, 59, 0.6);
+    -fx-background-radius: 16;
+    -fx-border-color: rgba(255, 255, 255, 0.12);
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 15, 0, 0, 8);
+}
+
+.glass-card-accent {
+    -fx-background-color: linear-gradient(to bottom right, rgba(99, 102, 241, 0.25), rgba(30, 41, 59, 0.65));
+    -fx-background-radius: 16;
+    -fx-border-color: rgba(99, 102, 241, 0.4);
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(99, 102, 241, 0.2), 15, 0, 0, 8);
+}
+
+.kpi-card {
+    -fx-background-color: rgba(30, 41, 59, 0.7);
+    -fx-background-radius: 14;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 16;
+}
+
+/* Typography */
+.heading-1 {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+
+.heading-2 {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f1f5f9;
+}
+
+.heading-3 {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #e2e8f0;
+}
+
+.text-muted {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94a3b8;
+}
+
+.kpi-value {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #38bdf8;
+}
+
+.kpi-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #94a3b8;
+    -fx-text-transform: uppercase;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #334155;
+    -fx-text-fill: #f8fafc;
+    -fx-background-radius: 8;
+    -fx-padding: 9 18 9 18;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 8;
+}
+
+.button:hover {
+    -fx-background-color: #475569;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #4f46e5, #6366f1);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(99, 102, 241, 0.35), 10, 0, 0, 4);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #4338ca, #4f46e5);
+}
+
+.btn-success {
+    -fx-background-color: linear-gradient(to right, #059669, #10b981);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-width: 0;
+}
+
+.btn-success:hover {
+    -fx-background-color: linear-gradient(to right, #047857, #059669);
+}
+
+.btn-danger {
+    -fx-background-color: linear-gradient(to right, #dc2626, #ef4444);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-width: 0;
+}
+
+.btn-danger:hover {
+    -fx-background-color: linear-gradient(to right, #b91c1c, #dc2626);
+}
+
+.btn-warning {
+    -fx-background-color: linear-gradient(to right, #d97706, #f59e0b);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-border-width: 0;
+}
+
+.btn-warning:hover {
+    -fx-background-color: linear-gradient(to right, #b45309, #d97706);
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94a3b8;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-padding: 11 16 11 16;
+    -fx-background-radius: 8;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-border-width: 0;
+}
+
+.nav-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-text-fill: #ffffff;
+}
+
+.nav-btn-active {
+    -fx-background-color: linear-gradient(to right, rgba(99, 102, 241, 0.3), rgba(99, 102, 241, 0.1));
+    -fx-text-fill: #a5b4fc;
+    -fx-border-color: #6366f1;
+    -fx-border-width: 0 0 0 3;
+    -fx-background-radius: 0 8 8 0;
+    -fx-padding: 11 16 11 13;
+}
+
+/* Form Inputs */
+.text-field, .password-field, .text-area, .combo-box {
+    -fx-background-color: rgba(15, 23, 42, 0.8);
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #64748b;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 9 12 9 12;
+}
+
+.text-field:focused, .password-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: #6366f1;
+    -fx-effect: dropshadow(three-pass-box, rgba(99, 102, 241, 0.3), 8, 0, 0, 0);
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: rgba(30, 41, 59, 0.5);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-border-radius: 10;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: rgba(15, 23, 42, 0.8);
+    -fx-background-radius: 10 10 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent rgba(255, 255, 255, 0.06) rgba(255, 255, 255, 0.1) transparent;
+    -fx-padding: 10;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent rgba(255, 255, 255, 0.04) transparent;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.015);
+}
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(99, 102, 241, 0.15);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(99, 102, 241, 0.3);
+}
+
+.table-cell {
+    -fx-text-fill: #e2e8f0;
+    -fx-padding: 8;
+}
+
+/* Status Badges */
+.badge {
+    -fx-background-radius: 12;
+    -fx-padding: 4 10 4 10;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.badge-success {
+    -fx-background-color: rgba(16, 185, 129, 0.2);
+    -fx-text-fill: #34d399;
+    -fx-border-color: rgba(16, 185, 129, 0.4);
+    -fx-border-radius: 12;
+}
+
+.badge-warning {
+    -fx-background-color: rgba(245, 158, 11, 0.2);
+    -fx-text-fill: #fbbf24;
+    -fx-border-color: rgba(245, 158, 11, 0.4);
+    -fx-border-radius: 12;
+}
+
+.badge-danger {
+    -fx-background-color: rgba(239, 68, 68, 0.2);
+    -fx-text-fill: #f87171;
+    -fx-border-color: rgba(239, 68, 68, 0.4);
+    -fx-border-radius: 12;
+}
+
+.badge-info {
+    -fx-background-color: rgba(56, 189, 248, 0.2);
+    -fx-text-fill: #38bdf8;
+    -fx-border-color: rgba(56, 189, 248, 0.4);
+    -fx-border-radius: 12;
+}
+
+/* Tabs */
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.tab {
+    -fx-background-color: rgba(30, 41, 59, 0.5);
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 8 16 8 16;
+}
+
+.tab:selected {
+    -fx-background-color: #4f46e5;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-weight: 600;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+/* Scrollbars */
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}

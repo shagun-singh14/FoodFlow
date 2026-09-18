@@ -1,0 +1,751 @@
+Sept 18, 2026 5:49:07 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 5:49:07 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 5:49:07 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE students (
+    student_id BIGINT PRIMARY KEY,
+ ...] -> Syntax error in SQL statement "CREATE TABLE students (\000a    student_id BIGINT PRIMARY KEY,\000a    registration_number VARCHAR(30) NOT NULL UNIQUE,\000a    course VARCHAR(50) NOT NULL,\000a    [*]year INT NOT NULL,\000a    hostel VARCHAR(50) NOT NULL,\000a    room_number VARCHAR(20) NOT NULL,\000a    is_enrolled BOOLEAN NOT NULL DEFAULT TRUE,\000a    FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE\000a) "; expected "identifier"; SQL statement:
+CREATE TABLE students (
+    student_id BIGINT PRIMARY KEY,
+    registration_number VARCHAR(30) NOT NULL UNIQUE,
+    course VARCHAR(50) NOT NULL,
+    year INT NOT NULL,
+    hostel VARCHAR(50) NOT NULL,
+    room_number VARCHAR(20) NOT NULL,
+    is_enrolled BOOLEAN NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE
+)  [42001-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE meal_attendance (
+    attendance_id BIGINT AUTO...] -> Table "students" not found; SQL statement:
+CREATE TABLE meal_attendance (
+    attendance_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    attendance_date DATE NOT NULL,
+    meal_type VARCHAR(20) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'PRESENT',
+    marked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY uq_student_date_meal (student_id, attendance_date, meal_type),
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE feedbacks (
+    feedback_id BIGINT AUTO_INCREME...] -> Table "students" not found; SQL statement:
+CREATE TABLE feedbacks (
+    feedback_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    meal_type VARCHAR(20) NOT NULL,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comments TEXT,
+    feedback_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE complaints (
+    complaint_id BIGINT AUTO_INCRE...] -> Table "students" not found; SQL statement:
+CREATE TABLE complaints (
+    complaint_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'OPEN',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    resolved_at TIMESTAMP NULL,
+    admin_remarks TEXT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE bills (
+    bill_id BIGINT AUTO_INCREMENT PRIMA...] -> Table "students" not found; SQL statement:
+CREATE TABLE bills (
+    bill_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    billing_month VARCHAR(20) NOT NULL,
+    total_meals INT NOT NULL DEFAULT 0,
+    amount DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    payment_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+    generated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    paid_at TIMESTAMP NULL,
+    UNIQUE KEY uq_student_month (student_id, billing_month),
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE notifications (
+    notification_id BIGINT AUTO...] -> Table "students" not found; SQL statement:
+CREATE TABLE notifications (
+    notification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    message TEXT NOT NULL,
+    notification_date DATE NOT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO students (student_id, registration_number, cours...] -> Table "students" not found; SQL statement:
+INSERT INTO students (student_id, registration_number, course, year, hostel, room_number, is_enrolled) VALUES
+(3, '23BCE1001', 'B.Tech CSE', 3, 'Block A - Mens Hostel', 'A-304', TRUE),
+(4, '23BCE1045', 'B.Tech CSE', 3, 'Block D - Ladies Hostel', 'D-112', TRUE),
+(5, '24BIT1012', 'B.Tech IT', 2, 'Block B - Mens Hostel', 'B-205', TRUE),
+(6, '24BEC1088', 'B.Tech ECE', 2, 'Block E - Ladies Hostel', 'E-401', TRUE),
+(7, '22BME1034', 'B.Tech Mech', 4, 'Block C - Mens Hostel', 'C-108', TRUE),
+(8, '23BCE1190', 'B.Tech CSE', 3, 'Block D - Ladies Hostel', 'D-220', TRUE),
+(9, '25BCE2004', 'B.Tech CSE', 1, 'Block A - Mens Hostel', 'A-102', TRUE),
+(10, '24BDS1015', 'B.Tech Data Sci', 2, 'Block E - Ladies Hostel', 'E-315', TRUE),
+(11, '23BIT1099', 'B.Tech IT', 3, 'Block B - Mens Hostel', 'B-412', TRUE),
+(12, '22BEE1021', 'B.Tech EEE', 4, 'Block D - Ladies Hostel', 'D-305', TRUE) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO meal_attendance (student_id, attendance_date, me...] -> Table "meal_attendance" not found; SQL statement:
+INSERT INTO meal_attendance (student_id, attendance_date, meal_type, status) VALUES
+(3, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(3, '2026-09-18', 'LUNCH', 'PRESENT'),
+(4, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(4, '2026-09-18', 'LUNCH', 'PRESENT'),
+(4, '2026-09-18', 'SNACKS', 'PRESENT'),
+(5, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(6, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(6, '2026-09-18', 'LUNCH', 'PRESENT'),
+(7, '2026-09-18', 'LUNCH', 'PRESENT'),
+(8, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(3, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(3, '2026-09-17', 'LUNCH', 'PRESENT'),
+(3, '2026-09-17', 'SNACKS', 'PRESENT'),
+(3, '2026-09-17', 'DINNER', 'PRESENT'),
+(4, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(4, '2026-09-17', 'LUNCH', 'PRESENT'),
+(4, '2026-09-17', 'DINNER', 'PRESENT'),
+(5, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(5, '2026-09-17', 'DINNER', 'PRESENT'),
+(6, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(6, '2026-09-17', 'LUNCH', 'PRESENT'),
+(6, '2026-09-17', 'DINNER', 'PRESENT') [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO feedbacks (student_id, meal_type, rating, commen...] -> Table "feedbacks" not found; SQL statement:
+INSERT INTO feedbacks (student_id, meal_type, rating, comments, feedback_date) VALUES
+(3, 'LUNCH', 5, 'Paneer Butter Masala was delicious and fresh!', '2026-09-18'),
+(4, 'BREAKFAST', 4, 'Poha was hot and flavourful. Good coffee.', '2026-09-18'),
+(5, 'BREAKFAST', 2, 'Poha was a bit dry today, need more lemon/spices.', '2026-09-18'),
+(6, 'LUNCH', 5, 'South Indian meals were authentic and satisfying.', '2026-09-18'),
+(7, 'DINNER', 4, 'Good quality food and on-time service.', '2026-09-17'),
+(8, 'LUNCH', 1, 'Sambar salt was too high on Wednesday.', '2026-09-16'),
+(9, 'BREAKFAST', 5, 'Idlis were super soft and sambar was warm.', '2026-09-16') [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO complaints (student_id, category, description, s...] -> Table "complaints" not found; SQL statement:
+INSERT INTO complaints (student_id, category, description, status, admin_remarks, resolved_at) VALUES
+(3, 'FOOD_QUALITY', 'The rice quality at dinner on Sept 16 felt undercooked.', 'RESOLVED', 'Chef was notified and grain vendor batches were checked.', '2026-09-17 14:30:00'),
+(5, 'HYGIENE', 'Water dispenser near table 4 was leaking and needed cleaning.', 'RESOLVED', 'Maintenance team replaced the dispenser valve.', '2026-09-17 18:00:00'),
+(7, 'TIMING', 'Snacks counter was closed 15 minutes before scheduled end time.', 'IN_PROGRESS', 'Admin issued notice to evening shift staff.', NULL),
+(8, 'MENU', 'Requesting more protein-rich options (egg/paneer) in breakfast.', 'OPEN', NULL, NULL),
+(10, 'STAFF', 'Staff at counter 2 was polite and helpful today.', 'OPEN', NULL, NULL) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO bills (student_id, billing_month, total_meals, a...] -> Table "bills" not found; SQL statement:
+INSERT INTO bills (student_id, billing_month, total_meals, amount, payment_status, paid_at) VALUES
+(3, 'August 2026', 92, 2760.00, 'PAID', '2026-09-02 10:15:00'),
+(3, 'September 2026', 48, 1440.00, 'PENDING', NULL),
+(4, 'August 2026', 88, 2640.00, 'PAID', '2026-09-03 11:20:00'),
+(4, 'September 2026', 52, 1560.00, 'PENDING', NULL),
+(5, 'September 2026', 42, 1260.00, 'PENDING', NULL),
+(6, 'September 2026', 50, 1500.00, 'PENDING', NULL),
+(7, 'September 2026', 46, 1380.00, 'PENDING', NULL),
+(8, 'September 2026', 49, 1470.00, 'PENDING', NULL) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO notifications (student_id, message, notification...] -> Table "notifications" not found; SQL statement:
+INSERT INTO notifications (student_id, message, notification_date, is_read) VALUES
+(3, 'Welcome to FoodFlow Mess Portal! Your September meal plan is active.', '2026-09-01', TRUE),
+(3, 'Special Feast Menu scheduled for upcoming Friday dinner.', '2026-09-17', FALSE),
+(4, 'Your complaint #1 regarding hygiene has been resolved by Admin.', '2026-09-17', TRUE),
+(5, 'Mess dues for September 2026 are generated. Total: ₹1260.', '2026-09-18', FALSE),
+(6, 'Reminder: Please provide feedback on today South Indian meals.', '2026-09-18', FALSE) [42102-224]
+Sept 18, 2026 6:30:42 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 6:30:43 PM com.foodflow.util.LoggerUtil warning
+WARNING: Failed login attempt: Invalid password for (rahul.sharma@vit.ac.in)
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE students (
+    student_id BIGINT PRIMARY KEY,
+ ...] -> Syntax error in SQL statement "CREATE TABLE students (\000a    student_id BIGINT PRIMARY KEY,\000a    registration_number VARCHAR(30) NOT NULL UNIQUE,\000a    course VARCHAR(50) NOT NULL,\000a    [*]year INT NOT NULL,\000a    hostel VARCHAR(50) NOT NULL,\000a    room_number VARCHAR(20) NOT NULL,\000a    is_enrolled BOOLEAN NOT NULL DEFAULT TRUE,\000a    FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE\000a)"; expected "identifier"; SQL statement:
+CREATE TABLE students (
+    student_id BIGINT PRIMARY KEY,
+    registration_number VARCHAR(30) NOT NULL UNIQUE,
+    course VARCHAR(50) NOT NULL,
+    year INT NOT NULL,
+    hostel VARCHAR(50) NOT NULL,
+    room_number VARCHAR(20) NOT NULL,
+    is_enrolled BOOLEAN NOT NULL DEFAULT TRUE,
+    FOREIGN KEY (student_id) REFERENCES users(id) ON DELETE CASCADE
+) [42001-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE meal_attendance (
+    attendance_id BIGINT AUTO...] -> Table "students" not found; SQL statement:
+CREATE TABLE meal_attendance (
+    attendance_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    attendance_date DATE NOT NULL,
+    meal_type VARCHAR(20) NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'PRESENT',
+    marked_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT uq_student_date_meal UNIQUE (student_id, attendance_date, meal_type),
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE feedbacks (
+    feedback_id BIGINT AUTO_INCREME...] -> Table "students" not found; SQL statement:
+CREATE TABLE feedbacks (
+    feedback_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    meal_type VARCHAR(20) NOT NULL,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    comments TEXT,
+    feedback_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE complaints (
+    complaint_id BIGINT AUTO_INCRE...] -> Table "students" not found; SQL statement:
+CREATE TABLE complaints (
+    complaint_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    category VARCHAR(50) NOT NULL,
+    description TEXT NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'OPEN',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    resolved_at TIMESTAMP NULL,
+    admin_remarks TEXT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE bills (
+    bill_id BIGINT AUTO_INCREMENT PRIMA...] -> Table "students" not found; SQL statement:
+CREATE TABLE bills (
+    bill_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    billing_month VARCHAR(20) NOT NULL,
+    total_meals INT NOT NULL DEFAULT 0,
+    amount DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    payment_status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
+    generated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    paid_at TIMESTAMP NULL,
+    CONSTRAINT uq_student_month UNIQUE (student_id, billing_month),
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE TABLE notifications (
+    notification_id BIGINT AUTO...] -> Table "students" not found; SQL statement:
+CREATE TABLE notifications (
+    notification_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    message TEXT NOT NULL,
+    notification_date DATE NOT NULL,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_student_reg ON students(registration_number...] -> Table "students" not found; SQL statement:
+CREATE INDEX idx_student_reg ON students(registration_number) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_student_hostel ON students(hostel)...] -> Table "students" not found; SQL statement:
+CREATE INDEX idx_student_hostel ON students(hostel) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_attendance_date ON meal_attendance(attendan...] -> Table "meal_attendance" not found; SQL statement:
+CREATE INDEX idx_attendance_date ON meal_attendance(attendance_date) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_attendance_student ON meal_attendance(stude...] -> Table "meal_attendance" not found; SQL statement:
+CREATE INDEX idx_attendance_student ON meal_attendance(student_id) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_feedback_date ON feedbacks(feedback_date)...] -> Table "feedbacks" not found; SQL statement:
+CREATE INDEX idx_feedback_date ON feedbacks(feedback_date) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_feedback_meal ON feedbacks(meal_type)...] -> Table "feedbacks" not found; SQL statement:
+CREATE INDEX idx_feedback_meal ON feedbacks(meal_type) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_complaint_status ON complaints(status)...] -> Table "complaints" not found; SQL statement:
+CREATE INDEX idx_complaint_status ON complaints(status) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_complaint_student ON complaints(student_id)...] -> Table "complaints" not found; SQL statement:
+CREATE INDEX idx_complaint_student ON complaints(student_id) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_bill_student ON bills(student_id)...] -> Table "bills" not found; SQL statement:
+CREATE INDEX idx_bill_student ON bills(student_id) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_bill_month ON bills(billing_month)...] -> Table "bills" not found; SQL statement:
+CREATE INDEX idx_bill_month ON bills(billing_month) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [CREATE INDEX idx_notif_student ON notifications(student_id)...] -> Table "notifications" not found; SQL statement:
+CREATE INDEX idx_notif_student ON notifications(student_id) [42102-224]
+Sept 18, 2026 6:31:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO students (student_id, registration_number, cours...] -> Table "students" not found; SQL statement:
+INSERT INTO students (student_id, registration_number, course, year, hostel, room_number, is_enrolled) VALUES
+(3, '23BCE1001', 'B.Tech CSE', 3, 'Block A - Mens Hostel', 'A-304', TRUE),
+(4, '23BCE1045', 'B.Tech CSE', 3, 'Block D - Ladies Hostel', 'D-112', TRUE),
+(5, '24BIT1012', 'B.Tech IT', 2, 'Block B - Mens Hostel', 'B-205', TRUE),
+(6, '24BEC1088', 'B.Tech ECE', 2, 'Block E - Ladies Hostel', 'E-401', TRUE),
+(7, '22BME1034', 'B.Tech Mech', 4, 'Block C - Mens Hostel', 'C-108', TRUE),
+(8, '23BCE1190', 'B.Tech CSE', 3, 'Block D - Ladies Hostel', 'D-220', TRUE),
+(9, '25BCE2004', 'B.Tech CSE', 1, 'Block A - Mens Hostel', 'A-102', TRUE),
+(10, '24BDS1015', 'B.Tech Data Sci', 2, 'Block E - Ladies Hostel', 'E-315', TRUE),
+(11, '23BIT1099', 'B.Tech IT', 3, 'Block B - Mens Hostel', 'B-412', TRUE),
+(12, '22BEE1021', 'B.Tech EEE', 4, 'Block D - Ladies Hostel', 'D-305', TRUE) [42102-224]
+Sept 18, 2026 6:31:45 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO meal_attendance (student_id, attendance_date, me...] -> Table "meal_attendance" not found; SQL statement:
+INSERT INTO meal_attendance (student_id, attendance_date, meal_type, status) VALUES
+(3, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(3, '2026-09-18', 'LUNCH', 'PRESENT'),
+(4, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(4, '2026-09-18', 'LUNCH', 'PRESENT'),
+(4, '2026-09-18', 'SNACKS', 'PRESENT'),
+(5, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(6, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(6, '2026-09-18', 'LUNCH', 'PRESENT'),
+(7, '2026-09-18', 'LUNCH', 'PRESENT'),
+(8, '2026-09-18', 'BREAKFAST', 'PRESENT'),
+(3, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(3, '2026-09-17', 'LUNCH', 'PRESENT'),
+(3, '2026-09-17', 'SNACKS', 'PRESENT'),
+(3, '2026-09-17', 'DINNER', 'PRESENT'),
+(4, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(4, '2026-09-17', 'LUNCH', 'PRESENT'),
+(4, '2026-09-17', 'DINNER', 'PRESENT'),
+(5, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(5, '2026-09-17', 'DINNER', 'PRESENT'),
+(6, '2026-09-17', 'BREAKFAST', 'PRESENT'),
+(6, '2026-09-17', 'LUNCH', 'PRESENT'),
+(6, '2026-09-17', 'DINNER', 'PRESENT') [42102-224]
+Sept 18, 2026 6:31:45 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO feedbacks (student_id, meal_type, rating, commen...] -> Table "feedbacks" not found; SQL statement:
+INSERT INTO feedbacks (student_id, meal_type, rating, comments, feedback_date) VALUES
+(3, 'LUNCH', 5, 'Paneer Butter Masala was delicious and fresh!', '2026-09-18'),
+(4, 'BREAKFAST', 4, 'Poha was hot and flavourful. Good coffee.', '2026-09-18'),
+(5, 'BREAKFAST', 2, 'Poha was a bit dry today, need more lemon/spices.', '2026-09-18'),
+(6, 'LUNCH', 5, 'South Indian meals were authentic and satisfying.', '2026-09-18'),
+(7, 'DINNER', 4, 'Good quality food and on-time service.', '2026-09-17'),
+(8, 'LUNCH', 1, 'Sambar salt was too high on Wednesday.', '2026-09-16'),
+(9, 'BREAKFAST', 5, 'Idlis were super soft and sambar was warm.', '2026-09-16') [42102-224]
+Sept 18, 2026 6:31:45 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO complaints (student_id, category, description, s...] -> Table "complaints" not found; SQL statement:
+INSERT INTO complaints (student_id, category, description, status, admin_remarks, resolved_at) VALUES
+(3, 'FOOD_QUALITY', 'The rice quality at dinner on Sept 16 felt undercooked.', 'RESOLVED', 'Chef was notified and grain vendor batches were checked.', '2026-09-17 14:30:00'),
+(5, 'HYGIENE', 'Water dispenser near table 4 was leaking and needed cleaning.', 'RESOLVED', 'Maintenance team replaced the dispenser valve.', '2026-09-17 18:00:00'),
+(7, 'TIMING', 'Snacks counter was closed 15 minutes before scheduled end time.', 'IN_PROGRESS', 'Admin issued notice to evening shift staff.', NULL),
+(8, 'MENU', 'Requesting more protein-rich options (egg/paneer) in breakfast.', 'OPEN', NULL, NULL),
+(10, 'STAFF', 'Staff at counter 2 was polite and helpful today.', 'OPEN', NULL, NULL) [42102-224]
+Sept 18, 2026 6:31:45 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO bills (student_id, billing_month, total_meals, a...] -> Table "bills" not found; SQL statement:
+INSERT INTO bills (student_id, billing_month, total_meals, amount, payment_status, paid_at) VALUES
+(3, 'August 2026', 92, 2760.00, 'PAID', '2026-09-02 10:15:00'),
+(3, 'September 2026', 48, 1440.00, 'PENDING', NULL),
+(4, 'August 2026', 88, 2640.00, 'PAID', '2026-09-03 11:20:00'),
+(4, 'September 2026', 52, 1560.00, 'PENDING', NULL),
+(5, 'September 2026', 42, 1260.00, 'PENDING', NULL),
+(6, 'September 2026', 50, 1500.00, 'PENDING', NULL),
+(7, 'September 2026', 46, 1380.00, 'PENDING', NULL),
+(8, 'September 2026', 49, 1470.00, 'PENDING', NULL) [42102-224]
+Sept 18, 2026 6:31:45 PM com.foodflow.util.LoggerUtil warning
+WARNING: Seed execution note on: [INSERT INTO notifications (student_id, message, notification...] -> Table "notifications" not found; SQL statement:
+INSERT INTO notifications (student_id, message, notification_date, is_read) VALUES
+(3, 'Welcome to FoodFlow Mess Portal! Your September meal plan is active.', '2026-09-01', TRUE),
+(3, 'Special Feast Menu scheduled for upcoming Friday dinner.', '2026-09-17', FALSE),
+(4, 'Your complaint #1 regarding hygiene has been resolved by Admin.', '2026-09-17', TRUE),
+(5, 'Mess dues for September 2026 are generated. Total: ₹1260.', '2026-09-18', FALSE),
+(6, 'Reminder: Please provide feedback on today South Indian meals.', '2026-09-18', FALSE) [42102-224]
+Sept 18, 2026 6:31:45 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 6:31:45 PM com.foodflow.util.LoggerUtil warning
+WARNING: Failed login attempt: Invalid password for (rahul.sharma@vit.ac.in)
+Sept 18, 2026 6:36:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 6:36:44 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 6:36:44 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 6:36:44 PM com.foodflow.util.LoggerUtil warning
+WARNING: Failed login attempt: Invalid password for (rahul.sharma@vit.ac.in)
+Sept 18, 2026 6:43:56 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 6:43:57 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 6:44:34 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: rahul.sharma@vit.ac.in (STUDENT)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: rahul.sharma@vit.ac.in as STUDENT
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: admin@foodflow.edu (ADMIN)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: admin@foodflow.edu as ADMIN
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Recorded ADD action on stack for date 2026-09-28
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Popped action from stack: [ADD] Added menu for 2026-09-28
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-6] Student 'Karthik Raja' (ID: 11) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #11 (Karthik Raja) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #11 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-6] SUCCESS: Attendance verified for Karthik Raja [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-6] Student 'Divya Ramesh' (ID: 10) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #10 (Divya Ramesh) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] Student 'Ananya Patel' (ID: 4) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Rahul Sharma' (ID: 3) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] Student 'Aditya Joshi' (ID: 7) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-5] Student 'Sneha Kulkarni' (ID: 8) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #10 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] Student 'Meera Iyer' (ID: 12) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-6] SUCCESS: Attendance verified for Divya Ramesh [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-6] Student 'Priya Nair' (ID: 6) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #4 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] SUCCESS: Attendance verified for Ananya Patel [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] Student 'Rohan Verma' (ID: 5) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #3 (Rahul Sharma) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #3 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Rahul Sharma [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Vikram Singh' (ID: 9) attempting to mark Dinner on 2026-09-18...
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #7 (Aditya Joshi) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #7 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] SUCCESS: Attendance verified for Aditya Joshi [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #8 (Sneha Kulkarni) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #8 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-5] SUCCESS: Attendance verified for Sneha Kulkarni [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #12 (Meera Iyer) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #12 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] SUCCESS: Attendance verified for Meera Iyer [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #6 (Priya Nair) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #6 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-6] SUCCESS: Attendance verified for Priya Nair [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #5 (Rohan Verma) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #5 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] SUCCESS: Attendance verified for Rohan Verma [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #9 (Vikram Singh) on 2026-09-18 (Dinner)
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #9 | Date: 2026-09-18 | Meal: DINNER
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Vikram Singh [Dinner]
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Exported text report using BufferedWriter: D:\FoodFlow\reports\Rahul_Monthly_Report_20260918_184435.txt
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Exported CSV using BufferedWriter: D:\FoodFlow\reports\All_Menus_20260918_184435.csv
+Sept 18, 2026 6:44:35 PM com.foodflow.util.LoggerUtil info
+INFO: Exported binary backup using FileOutputStream: D:\FoodFlow\reports\System_Snapshot_20260918_184435.dat
+Sept 18, 2026 6:55:14 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: rahul.sharma@vit.ac.in (STUDENT)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: rahul.sharma@vit.ac.in as STUDENT
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: admin@foodflow.edu (ADMIN)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: admin@foodflow.edu as ADMIN
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil warning
+WARNING: Failed login attempt: Invalid password for (rahul.sharma@vit.ac.in)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Created Student: 24BCE2020 (ID: 13)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Recorded ADD action on stack for date 2026-10-18
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Popped action from stack: [ADD] Added menu for 2026-10-18
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-17 (Snacks)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #4 | Date: 2026-09-17 | Meal: SNACKS
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-17 (Snacks)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] Student 'Aditya Joshi' (ID: 7) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] Student 'Meera Iyer' (ID: 12) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Rahul Sharma' (ID: 3) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] Student 'Ananya Patel' (ID: 4) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #7 (Aditya Joshi) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #7 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] SUCCESS: Attendance verified for Aditya Joshi [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] Student 'Sneha Kulkarni' (ID: 8) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #12 (Meera Iyer) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #12 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] SUCCESS: Attendance verified for Meera Iyer [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] Student 'Karthik Raja' (ID: 11) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #3 (Rahul Sharma) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #3 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Rahul Sharma [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Test New Student' (ID: 13) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #4 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] SUCCESS: Attendance verified for Ananya Patel [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] Student 'Divya Ramesh' (ID: 10) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #8 (Sneha Kulkarni) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #8 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] SUCCESS: Attendance verified for Sneha Kulkarni [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] Student 'Priya Nair' (ID: 6) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #11 (Karthik Raja) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #11 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] SUCCESS: Attendance verified for Karthik Raja [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] Student 'Rohan Verma' (ID: 5) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #13 (Test New Student) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #13 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Test New Student [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Vikram Singh' (ID: 9) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #10 (Divya Ramesh) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #10 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] SUCCESS: Attendance verified for Divya Ramesh [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #6 (Priya Nair) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #6 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] SUCCESS: Attendance verified for Priya Nair [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #5 (Rohan Verma) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #5 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] SUCCESS: Attendance verified for Rohan Verma [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #9 (Vikram Singh) on 2026-09-16 (Lunch)
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #9 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Vikram Singh [Lunch]
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Filed Complaint #6 for student ID 3
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Updated complaint #6 status to RESOLVED
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Generated Bill: Student #3 (23BCE1001) | Month: September 2026 | Meals: 7 | Amount: ₹290.00
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Exported text report using BufferedWriter: D:\FoodFlow\reports\UnitTest_Report_20260918_185515.txt
+Sept 18, 2026 6:55:15 PM com.foodflow.util.LoggerUtil info
+INFO: Exported binary backup using FileOutputStream: D:\FoodFlow\reports\UnitTest_Binary_20260918_185515.dat
+Sept 18, 2026 9:17:22 PM com.foodflow.util.LoggerUtil info
+INFO: Launching FoodFlow UI Application...
+Sept 18, 2026 9:17:23 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 9:17:23 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 9:17:23 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 9:17:56 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: admin@foodflow.edu (ADMIN)
+Sept 18, 2026 9:17:56 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: admin@foodflow.edu as ADMIN
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-1] Student 'Meera Iyer' (ID: 12) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-2] Student 'Aditya Joshi' (ID: 7) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-4] Student 'Ananya Patel' (ID: 4) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-3] Student 'Rahul Sharma' (ID: 3) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-8] Student 'Priya Nair' (ID: 6) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-9] Student 'Rohan Verma' (ID: 5) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-5] Student 'Sneha Kulkarni' (ID: 8) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-7] Student 'Divya Ramesh' (ID: 10) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-6] Student 'Karthik Raja' (ID: 11) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-10] Student 'Vikram Singh' (ID: 9) attempting to mark Breakfast on 2026-09-18...
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #12 (Meera Iyer) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #12 | Date: 2026-09-18 | Meal: BREAKFAST
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-1] SUCCESS: Attendance verified for Meera Iyer [Breakfast]
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #7 (Aditya Joshi) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #7 | Date: 2026-09-18 | Meal: BREAKFAST
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-2] SUCCESS: Attendance verified for Aditya Joshi [Breakfast]
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil warning
+WARNING: [pool-2-thread-4] REJECTED: Duplicate check caught for Ananya Patel - Duplicate attendance: Student ID 4 has already marked Breakfast on 2026-09-18.
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #3 (Rahul Sharma) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil warning
+WARNING: [pool-2-thread-3] REJECTED: Duplicate check caught for Rahul Sharma - Duplicate attendance: Student ID 3 has already marked Breakfast on 2026-09-18.
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #6 (Priya Nair) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil warning
+WARNING: [pool-2-thread-8] REJECTED: Duplicate check caught for Priya Nair - Duplicate attendance: Student ID 6 has already marked Breakfast on 2026-09-18.
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #5 (Rohan Verma) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil warning
+WARNING: [pool-2-thread-9] REJECTED: Duplicate check caught for Rohan Verma - Duplicate attendance: Student ID 5 has already marked Breakfast on 2026-09-18.
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #8 (Sneha Kulkarni) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil warning
+WARNING: [pool-2-thread-5] REJECTED: Duplicate check caught for Sneha Kulkarni - Duplicate attendance: Student ID 8 has already marked Breakfast on 2026-09-18.
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #10 (Divya Ramesh) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #10 | Date: 2026-09-18 | Meal: BREAKFAST
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-7] SUCCESS: Attendance verified for Divya Ramesh [Breakfast]
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #11 (Karthik Raja) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #11 | Date: 2026-09-18 | Meal: BREAKFAST
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-6] SUCCESS: Attendance verified for Karthik Raja [Breakfast]
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #9 (Vikram Singh) on 2026-09-18 (Breakfast)
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #9 | Date: 2026-09-18 | Meal: BREAKFAST
+Sept 18, 2026 9:18:20 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-2-thread-10] SUCCESS: Attendance verified for Vikram Singh [Breakfast]
+Sept 18, 2026 9:18:53 PM com.foodflow.util.LoggerUtil info
+INFO: Session terminated for user: admin@foodflow.edu
+Sept 18, 2026 9:18:54 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: rahul.sharma@vit.ac.in (STUDENT)
+Sept 18, 2026 9:18:54 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: rahul.sharma@vit.ac.in as STUDENT
+Sept 18, 2026 9:19:00 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #3 (Rahul Sharma) on 2026-09-18 (Snacks)
+Sept 18, 2026 9:19:00 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #3 | Date: 2026-09-18 | Meal: SNACKS
+Sept 18, 2026 9:19:35 PM com.foodflow.util.LoggerUtil info
+INFO: Session terminated for user: rahul.sharma@vit.ac.in
+Sept 18, 2026 9:19:37 PM com.foodflow.util.LoggerUtil info
+INFO: Closing FoodFlow Application...
+Sept 18, 2026 9:22:25 PM com.foodflow.util.LoggerUtil info
+INFO: Launching FoodFlow UI Application...
+Sept 18, 2026 9:22:25 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 9:22:25 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 9:22:25 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 9:22:27 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: admin@foodflow.edu (ADMIN)
+Sept 18, 2026 9:22:27 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: admin@foodflow.edu as ADMIN
+Sept 18, 2026 9:22:57 PM com.foodflow.util.LoggerUtil info
+INFO: Session terminated for user: admin@foodflow.edu
+Sept 18, 2026 9:22:58 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: rahul.sharma@vit.ac.in (STUDENT)
+Sept 18, 2026 9:22:58 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: rahul.sharma@vit.ac.in as STUDENT
+Sept 18, 2026 9:23:54 PM com.foodflow.util.LoggerUtil info
+INFO: Session terminated for user: rahul.sharma@vit.ac.in
+Sept 18, 2026 9:23:55 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: admin@foodflow.edu (ADMIN)
+Sept 18, 2026 9:23:55 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: admin@foodflow.edu as ADMIN
+Sept 18, 2026 9:24:34 PM com.foodflow.util.LoggerUtil info
+INFO: Session terminated for user: admin@foodflow.edu
+Sept 18, 2026 9:24:36 PM com.foodflow.util.LoggerUtil info
+INFO: Closing FoodFlow Application...
