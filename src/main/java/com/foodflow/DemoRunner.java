@@ -24,7 +24,7 @@ public class DemoRunner {
 
     public static void main(String[] args) {
         System.out.println("================================================================================");
-        System.out.println("   FOODFLOW – COLLEGE MESS MANAGEMENT SYSTEM (VIT BYOP EVALUATION)             ");
+        System.out.println("   FOODFLOW – COLLEGE MESS MANAGEMENT SYSTEM                      ");
         System.out.println("================================================================================\n");
 
         try {

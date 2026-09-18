@@ -3,13 +3,10 @@
 ## Project Title
 **FoodFlow – College Mess Management System**
 
-**Context**: VITyarthi Build Your Own Project (BYOP) Evaluation  
-**Target Institution**: Vellore Institute of Technology (VIT)
-
 ---
 
 ## 1. Problem Statement
-In large residential collegiate campuses such as VIT, dining halls cater to tens of thousands of residential students across multiple hostel blocks every single day. Traditional mess management methodologies rely on disconnected manual ledgers, isolated turnstiles, or rudimentary spreadsheets. These obsolete approaches introduce severe operational friction:
+In large residential collegiate campuses, dining halls cater to tens of thousands of residential students across multiple hostel blocks every single day. Traditional mess management methodologies rely on disconnected manual ledgers, isolated turnstiles, or rudimentary spreadsheets. These obsolete approaches introduce severe operational friction:
 
 1. **Unchecked Food Wastage & Lack of Demand Forecasting**: Mess caterers lack real-time predictive data on attendance, causing massive over-preparation or sudden shortages.
 2. **Double-Tapping and Concurrency Inconsistencies**: Peak meal check-ins generate race conditions at RFID turnstiles and app gateways, creating duplicate billing entries or unrecorded meals.
@@ -71,9 +68,9 @@ The project scope encompasses:
 
 ---
 
-## 5. Expected Outcomes & Academic Evaluation
+## 5. Expected Outcomes
 The project achieves:
-- Complete compliance with all 38 requirement items in the VITyarthi evaluation rubric.
+- Complete compliance with all project functional and architectural requirement specifications.
 - Full command-line and GUI executability with zero-config database fallback.
 - Complete JUnit 5 test suite coverage passing with 100% success rate.
 - Production-grade code quality, modular architecture, salted password security, and thorough technical documentation.

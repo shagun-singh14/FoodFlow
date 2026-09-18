@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
 
     <name>FoodFlow - College Mess Management System</name>
-    <description>Academically rigorous College Mess Management System for VITyarthi BYOP Evaluation</description>
+    <description>Academically rigorous College Mess Management System</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -749,3 +749,131 @@ Sept 18, 2026 9:24:34 PM com.foodflow.util.LoggerUtil info
 INFO: Session terminated for user: admin@foodflow.edu
 Sept 18, 2026 9:24:36 PM com.foodflow.util.LoggerUtil info
 INFO: Closing FoodFlow Application...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil warning
+WARNING: MySQL not reachable (Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.). Initiating Zero-Config Embedded Database fallback.
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Connected to Embedded In-Memory Database (jdbc:h2:mem:foodflow_db;DB_CLOSE_DELAY=-1;MODE=MySQL;DATABASE_TO_LOWER=TRUE).
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Embedded database schema & seed data initialized successfully.
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: rahul.sharma@vit.ac.in (STUDENT)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: rahul.sharma@vit.ac.in as STUDENT
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Session started for user: admin@foodflow.edu (ADMIN)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Successful login: admin@foodflow.edu as ADMIN
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil warning
+WARNING: Failed login attempt: Invalid password for (rahul.sharma@vit.ac.in)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Created Student: 24BCE6711 (ID: 13)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Recorded ADD action on stack for date 2026-10-18
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Popped action from stack: [ADD] Added menu for 2026-10-18
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-17 (Snacks)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #4 | Date: 2026-09-17 | Meal: SNACKS
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-17 (Snacks)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Rahul Sharma' (ID: 3) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] Student 'Meera Iyer' (ID: 12) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] Student 'Ananya Patel' (ID: 4) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] Student 'Aditya Joshi' (ID: 7) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #3 (Rahul Sharma) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #3 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Rahul Sharma [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Sneha Kulkarni' (ID: 8) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #12 (Meera Iyer) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #12 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] SUCCESS: Attendance verified for Meera Iyer [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] Student 'Karthik Raja' (ID: 11) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #4 (Ananya Patel) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #4 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] SUCCESS: Attendance verified for Ananya Patel [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] Student 'Test New Student' (ID: 13) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #7 (Aditya Joshi) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #7 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] SUCCESS: Attendance verified for Aditya Joshi [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] Student 'Divya Ramesh' (ID: 10) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #8 (Sneha Kulkarni) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #8 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Sneha Kulkarni [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] Student 'Priya Nair' (ID: 6) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #11 (Karthik Raja) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #11 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] SUCCESS: Attendance verified for Karthik Raja [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] Student 'Rohan Verma' (ID: 5) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #13 (Test New Student) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #13 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] SUCCESS: Attendance verified for Test New Student [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] Student 'Vikram Singh' (ID: 9) attempting to mark Lunch on 2026-09-16...
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #10 (Divya Ramesh) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #10 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-2] SUCCESS: Attendance verified for Divya Ramesh [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #6 (Priya Nair) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #6 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-3] SUCCESS: Attendance verified for Priya Nair [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #5 (Rohan Verma) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #5 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-1] SUCCESS: Attendance verified for Rohan Verma [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [SYNCHRONIZED LOCK ACQUIRED] Processing attendance for Student #9 (Vikram Singh) on 2026-09-16 (Lunch)
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Attendance marked: Student #9 | Date: 2026-09-16 | Meal: LUNCH
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: [pool-1-thread-4] SUCCESS: Attendance verified for Vikram Singh [Lunch]
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Filed Complaint #6 for student ID 3
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Updated complaint #6 status to RESOLVED
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Generated Bill: Student #3 (23BCE1001) | Month: September 2026 | Meals: 7 | Amount: ₹290.00
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Exported text report using BufferedWriter: D:\FoodFlow\reports\UnitTest_Report_20260918_214355.txt
+Sept 18, 2026 9:43:55 PM com.foodflow.util.LoggerUtil info
+INFO: Exported binary backup using FileOutputStream: D:\FoodFlow\reports\UnitTest_Binary_20260918_214355.dat

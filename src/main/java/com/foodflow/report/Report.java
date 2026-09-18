@@ -42,7 +42,7 @@ public abstract class Report implements Exportable, Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append("======================================================================\n");
         sb.append(" ").append(reportTitle.toUpperCase()).append("\n");
-        sb.append(" FoodFlow Mess Management System - VIT University\n");
+        sb.append(" FoodFlow - College Mess Management System\n");
         sb.append(" Generated: ").append(generatedAt).append(" | By: ").append(generatedBy).append("\n");
         sb.append("======================================================================\n\n");
         sb.append(generateBody()).append("\n");

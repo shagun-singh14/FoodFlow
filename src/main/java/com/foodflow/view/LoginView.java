@@ -40,7 +40,7 @@ public class LoginView {
         title.getStyleClass().add("heading-1");
         title.setStyle("-fx-font-size: 32px; -fx-text-fill: #818cf8;");
 
-        Label subtitle = new Label("College Mess Management Portal • VIT");
+        Label subtitle = new Label("College Mess Management Portal");
         subtitle.getStyleClass().add("text-muted");
 
         brandBox.getChildren().addAll(title, subtitle);

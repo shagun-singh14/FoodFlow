@@ -4,9 +4,8 @@
 [![UI Framework](https://img.shields.io/badge/JavaFX-21.0.2-orange.svg)](https://openjfx.io/)
 [![ORM Framework](https://img.shields.io/badge/Hibernate-6.4.4.Final-lightgrey.svg)](https://hibernate.org/)
 [![Database](https://img.shields.io/badge/MySQL-8.0%2B-blue.svg)](https://www.mysql.com/)
-[![Evaluation](https://img.shields.io/badge/VITyarthi-BYOP%20Project-success.svg)](https://vit.ac.in)
 
-> **FoodFlow** is a complete, enterprise-grade, and academically rigorous software application developed for the **VITyarthi Build Your Own Project (BYOP) evaluation**. It digitizes student mess enrollment, daily 4-session menu scheduling, real-time concurrent attendance verification, food quality feedback, grievance redressal, and monthly invoice generation.
+> **FoodFlow** is a complete, enterprise-grade, and academically rigorous software application. It digitizes student mess enrollment, daily 4-session menu scheduling, real-time concurrent attendance verification, food quality feedback, grievance redressal, and monthly invoice generation.
 
 ---
 
@@ -29,8 +28,6 @@
 ## 1. Project Title & Overview
 
 **Project Title**: **FoodFlow – College Mess Management System**  
-**Target Institution**: Vellore Institute of Technology (VIT)  
-**Evaluation**: VITyarthi Build Your Own Project (BYOP)
 
 FoodFlow transforms college dining hall operations by replacing error-prone manual paper registers and uncoordinated turnstiles with an automated, synchronized, and transparent software platform. It supports role-based access for **Students** and **Mess Administrators**, offering live menu nutrition tracking, 1-click meal attendance, grievance tracking, and automated monthly billing.
 
@@ -300,5 +297,4 @@ java -cp "target\classes;target\test-classes;$jars" com.foodflow.TestRunner
 
 ## 13. License & Author
 - **Project**: FoodFlow – College Mess Management System
-- **Evaluation**: VITyarthi Build Your Own Project (BYOP)
-- **License**: MIT Academic License
+- **Created By**: Shagun Singh (24BCY10379)

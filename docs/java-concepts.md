@@ -1,6 +1,6 @@
 # Java Syllabus & Concepts Implementation Mapping
 
-This document provides a complete, 1-to-1 academic mapping between each topic in the **VITyarthi Java syllabus** and its concrete, functional implementation in the **FoodFlow** codebase.
+This document provides a complete, 1-to-1 academic mapping between each topic in the **advanced Java curriculum** and its concrete, functional implementation in the **FoodFlow** codebase.
 
 ---
 
